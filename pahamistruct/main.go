@@ -2,12 +2,16 @@ package main
 
 import "fmt"
 
-type Mahasisawa struct {
+type Mahasiswa struct {
 	nama string
 	nim  string
 }
 
-func sebutMahasiswa(mhs Mahasisawa) {
+func sapaMahasiswa(m Mahasiswa) {
+	fmt.Printf("halo, %s\n", m.nama)
+}
+
+func sebutMahasiswa(mhs Mahasiswa) {
 	fmt.Printf("MAHASISWA TEKNIK INFORMATIKA\n")
 	fmt.Printf("nama %s\n", mhs.nama)
 	fmt.Printf("nim %s\n", mhs.nim)
@@ -15,7 +19,9 @@ func sebutMahasiswa(mhs Mahasisawa) {
 
 func main() {
 	fmt.Println("mencoba lagi")
-	baru := Mahasisawa{nama: "ikrar aprianto", nim: "20 650 028"}
+	baru := Mahasiswa{nama: "ikrar aprianto", nim: "20 650 028"}
 
-	sebutMahasiswa(baru)
+	sapaMahasiswa(baru)
+
+	// sebutMahasiswa(baru)
 }
