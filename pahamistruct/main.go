@@ -23,5 +23,5 @@ func main() {
 
 	sapaMahasiswa(baru)
 
-	// sebutMahasiswa(baru)
+	sebutMahasiswa(baru)
 }
