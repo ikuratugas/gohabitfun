@@ -7,8 +7,8 @@ type Mahasiswa struct {
 	nim  string
 }
 
-func sapaMahasiswa(m Mahasiswa) {
-	fmt.Printf("halo, %s\n", m.nama)
+func sapaMahasiswa(m *Mahasiswa) {
+	fmt.Printf("halo, %s di alamat %p\n", m.nama, &m.nama)
 }
 
 func sebutMahasiswa(mhs Mahasiswa) {
@@ -20,8 +20,8 @@ func sebutMahasiswa(mhs Mahasiswa) {
 func main() {
 	fmt.Println("mencoba lagi")
 	baru := Mahasiswa{nama: "ikrar aprianto", nim: "20 650 028"}
-
-	sapaMahasiswa(baru)
+	fmt.Printf("nilai alamat awal %p\n", &baru.nama)
+	sapaMahasiswa(&baru)
 
 	sebutMahasiswa(baru)
 }
