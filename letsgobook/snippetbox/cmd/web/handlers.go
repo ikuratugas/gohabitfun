@@ -6,20 +6,22 @@ import (
 	"strconv"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
+func (app *applicationServer) Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		app.NotFound(w)
+		app.InfoLog.Println(r.URL.Path)
 		return
 	}
 
 	w.Write([]byte("Welcome to Snippet"))
 }
 
-func ShowSnippet(w http.ResponseWriter, r *http.Request) {
+func (app *applicationServer) ShowSnippet(w http.ResponseWriter, r *http.Request) {
 
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 	if err != nil || id < 1 {
-		http.NotFound(w, r)
+		app.NotFound(w)
+		app.InfoLog.Println(err.Error())
 		return
 	}
 
@@ -27,15 +29,15 @@ func ShowSnippet(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func CreateSnippet(w http.ResponseWriter, r *http.Request) {
+func (app *applicationServer) CreateSnippet(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
-		// harus pakai writeheader bila ingin http-nya tidak menampilkan (200)
-		// status ok, biar lebih mudah debugginnya nanti
-		// w.WriteHeader(405)
-		// w.Write([]byte("Method Not Allowed"))
+		// 	// harus pakai writeheader bila ingin http-nya tidak menampilkan (200)
+		// 	// status ok, biar lebih mudah debugginnya nanti
+		// 	// w.WriteHeader(405)
+		// 	// w.Write([]byte("Method Not Allowed"))
 
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		app.InfoLog.Println(r.Method)
 		return
 	}
 
