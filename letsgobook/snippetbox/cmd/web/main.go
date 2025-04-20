@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"flag"
+	"ikura/snippetbox/pkg/models/msyql"
 	"log"
 	"net/http"
 	"os"
@@ -13,6 +14,7 @@ import (
 type applicationServer struct {
 	InfoLog  *log.Logger
 	ErrorLog *log.Logger
+	Snippet  *msyql.SnippetModel
 }
 
 func main() {
@@ -34,6 +36,7 @@ func main() {
 	app := &applicationServer{
 		InfoLog:  infLog,
 		ErrorLog: errLog,
+		Snippet:  &msyql.SnippetModel{DB: db},
 	}
 
 	// fmt.Printf("server berjalan di port %s\n", *addr)

@@ -41,5 +41,15 @@ func (app *applicationServer) CreateSnippet(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
+	title := "ikura aprianto"
+	content := "tommorrow it's my birthday"
+	expires := "7"
+
+	_, err := app.Snippet.Insert(title, content, expires)
+	if err != nil {
+		app.ServerError(w, err)
+		return
+	}
+
 	w.Write([]byte("create the snippet"))
 }
